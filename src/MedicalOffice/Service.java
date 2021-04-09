@@ -138,17 +138,16 @@ public class Service {
                 System.out.println("Introduceti prenumele:");
                 String lastName = scan.next();
 
-                Pacient objToDelete = new Pacient();
+
                 int found = 0;
-                for(Pacient it:Pacients)
-                    if(it.getLastName().equals(lastName) && it.getFirstName().equals(firstName)){
+                for(int i=0;i<Pacients.size();i++)
+                    if(Pacients.get(i).getLastName().equals(lastName) && Pacients.get(i).getFirstName().equals(firstName)){
                         found = 1;
-                        objToDelete = it;
+                        Pacients.remove(i);
                     }
 
                 if(found == 0) {
                     System.out.println("Acest pacient nu a fost gasit");
-                    Pacients.remove(objToDelete);
                 }
                 else
                     System.out.println("Acest pacient a fost sters cu succes");
@@ -279,15 +278,13 @@ public class Service {
                 System.out.println("Introduceti prenumele");
                 String lastName = scan.next();
 
-                Doctor objToDelete = new Doctor();
                 int found = 0;
-                for(Doctor it:Doctors)
-                    if(it.getFirstName().equals(firstName) && it.getLastName().equals(lastName)){
+                for(int i=0;i< Doctors.size();i++)
+                    if(Doctors.get(i).getFirstName().equals(firstName) && Doctors.get(i).getLastName().equals(lastName)){
                         found = 1;
-                        objToDelete = it;
+                        Doctors.remove(i);
                     }
                 if(found == 1) {
-                    Doctors.remove(objToDelete);
                     System.out.println("Doctorul a fost sters cu succes");
                 }
                 else
@@ -408,15 +405,15 @@ public class Service {
 
                 Appointment objToDelete = new Appointment();
                 int found = 1;
-                for(Appointment it:Appointments){
-                    if(it.getIdPacient() == idPacient && it.getIdDoctor() == idDoctor &&
-                    it.getMotive().equals(motive) && it.getDate().equals(data) && it.getHour() == hour) {
-                        objToDelete = it;
+                for(int i=0;i< Appointments.size();i++){
+                    if(Appointments.get(i).getIdPacient() == idPacient && Appointments.get(i).getIdDoctor() == idDoctor
+                            && Appointments.get(i).getMotive().equals(motive) && Appointments.get(i).getDate().equals(data)
+                            && Appointments.get(i).getHour() == hour) {
                         found = 1;
+                        Appointments.remove(i);
                     }
                 }
                 if(found == 1){
-                    Appointments.remove(objToDelete);
                     System.out.println("Programarea a fost anulata cu succes");
                 }
                 else
