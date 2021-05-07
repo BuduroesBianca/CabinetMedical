@@ -4,13 +4,13 @@ import java.util.Vector;
 
 public class Pacient extends Person implements Comparable<Pacient>{
 
-    private Vector<String> symptoms;
+    private String symptoms;
     private boolean insurance;
     private boolean covidTest;
 
     public Pacient(){}
 
-    public Pacient(int id, int age, String firstName, String lastName, Vector<String> symptoms, boolean insurance,boolean covidTest) {
+    public Pacient(int id, int age, String firstName, String lastName, String symptoms, boolean insurance,boolean covidTest) {
         super(id, age, firstName, lastName);
         this.symptoms = symptoms;
         this.insurance = insurance;
@@ -35,11 +35,11 @@ public class Pacient extends Person implements Comparable<Pacient>{
         return false;
     }
 
-    public Vector<String> getSymptoms() {
+    public String getSymptoms() {
         return symptoms;
     }
 
-    public void setSymptoms(Vector<String> symptoms) {
+    public void setSymptoms(String symptoms) {
         this.symptoms = symptoms;
     }
 
@@ -53,10 +53,8 @@ public class Pacient extends Person implements Comparable<Pacient>{
 
     @Override
     public String toString(){
-        String infoPacient =  getFirstName() + " " + getLastName() + ", Varsta " + getAge() + ", Covid-19 " + hasCovid() + ", Simptome: ";
-        for(String it:symptoms){
-            infoPacient = infoPacient + it + " ";
-        }
+        String infoPacient =  getFirstName() + " " + getLastName() + ", Varsta " + getAge() + ", Covid-19 " + hasCovid() + ", Simptome: " + getSymptoms();
+
         return infoPacient;
     }
 

@@ -9,11 +9,11 @@ public class Appointment{
 
     private String motive;
     private int hour;
-    private Date date;
+    private String date;
 
     public Appointment(){}
 
-    public Appointment(int idPacient, int idDoctor, String motive, int hour, Date date) {
+    public Appointment(int idPacient, int idDoctor, String motive, int hour, String date) {
         this.idPacient = idPacient;
         this.idDoctor = idDoctor;
         this.motive = motive;
@@ -53,11 +53,11 @@ public class Appointment{
         this.hour = hour;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
