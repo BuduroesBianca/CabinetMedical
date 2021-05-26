@@ -16,6 +16,6 @@ public final class Audit {
     protected void auditService(String action){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         String [] data = {action, timestamp.toString()};
-        Database.writeDataToCsv("auditLog.csv", data);
+        //Database.writeDataToCsv("auditLog.csv", data);
     }
 }

@@ -2,8 +2,8 @@ package MedicalOffice;
 
 public class Psychologist extends Doctor{
 
-    public Psychologist(int id,int yearsOfExperience, String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
-        super(id,yearsOfExperience, firstName, lastName, age, telephoneNumber, priceRange);
+    public Psychologist(int yearsOfExperience,String specialty, String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
+        super(yearsOfExperience,specialty, firstName, lastName, age, telephoneNumber, priceRange);
     }
 
     @Override

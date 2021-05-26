@@ -4,8 +4,8 @@ import java.util.Comparator;
 
 public class Doctor {
 
-    private int id;
     private int yearsOfExperience;
+    private String specialty;
     private String firstName;
     private String lastName;
     private int age;
@@ -13,9 +13,10 @@ public class Doctor {
     private String priceRange;
 
     public Doctor(){}
-    public Doctor(int id,int yearsOfExperience, String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
-        this.id = id;
+    public Doctor(int yearsOfExperience, String specialty,String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
+
         this.yearsOfExperience = yearsOfExperience;
+        this.specialty = specialty;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -23,12 +24,12 @@ public class Doctor {
         this.priceRange = priceRange;
     }
 
-    public int getId() {
-        return id;
+    public String getSpecialty() {
+        return specialty;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 
     public int getYearsOfExperience() {

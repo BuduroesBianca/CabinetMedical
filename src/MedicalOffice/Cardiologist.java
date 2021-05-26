@@ -2,8 +2,10 @@ package MedicalOffice;
 
 public class Cardiologist extends Doctor{
 
-    public Cardiologist(int id,int yearsOfExperience, String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
-        super(id,yearsOfExperience, firstName, lastName, age, telephoneNumber, priceRange);
+
+
+    public Cardiologist(int yearsOfExperience, String specialty,String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
+        super(yearsOfExperience,specialty, firstName, lastName, age, telephoneNumber, priceRange);
     }
 
     @Override

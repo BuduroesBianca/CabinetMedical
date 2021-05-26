@@ -1,5 +1,6 @@
 package MedicalOffice;
 
+import java.sql.SQLException;
 import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,8 +9,38 @@ public class Main {
     public static void main(String[] args) throws ParseException {
         Service service = new Service();
 
+        PacientsDatabase dbP = PacientsDatabase.getDatabaseInstance();
+        DoctorsDatabase dbD = DoctorsDatabase.getDatabaseInstance();
+        AppointmentsDatabase dbA = AppointmentsDatabase.getDatabaseInstance1();
+
+        //dbA.dropTable();
+        //dbA.addAppointment(1,1,"tuse",15,"13/04/2021");
+       // dbA.addAppointment(2,2,"febra",16,"15/05/2021");
+        dbA.showAppointments();
+
+        Doctor d = new Doctor(30,"Cardiologist","cardio","cardio",56,"99","$$");
+        Doctor d1 = new Doctor(30,"Dentist","dentist","dentist",78,"88","$");
+        Doctor d2 = new Doctor(7,"Psychologist","psycho","psycho",80,"99","$$$");
+
+        //dbD.addDoctor(d);
+        //dbD.addDoctor(d1);
+        //dbD.addDoctor(d2);
+
+        //dbD.dropTable();
+        //dbD.addDoctor(30,"nume","prenume",68,"0758354671","$$");
+        //dbD.showDoctors();
 
 
+        //dbP.dropTable();
+        //dbP.addPacient(2,"a","b","c",true,false);
+        //dbP.addPacient(18,"a","b","c",true,false);
+        //dbP.showPacients();
+        List<Pacient> pacients = PacientsDatabase.Read();
+
+
+
+        //db.updatePacient("a","Bianca","AGE","30");
+        //db.showPacients();
 
         loop:
         while(true){

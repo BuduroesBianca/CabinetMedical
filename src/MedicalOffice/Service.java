@@ -1,5 +1,7 @@
 package MedicalOffice;
 
+import javax.print.Doc;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Scanner;
@@ -11,14 +13,24 @@ import java.util.stream.Collectors;
 
 public class Service {
 
-    private List<Pacient> Pacients= new ArrayList<Pacient>();
-    private List<Doctor> Doctors = new ArrayList<Doctor>();
-    private List<Appointment> Appointments = new ArrayList<Appointment>();
+    PacientsDatabase dbPacients = PacientsDatabase.getDatabaseInstance();
+    DoctorsDatabase dbDoctors = DoctorsDatabase.getDatabaseInstance();
+    AppointmentsDatabase dbAppointments = AppointmentsDatabase.getDatabaseInstance1();
 
-    Database db = Database.getDatabaseInstance();
+    private List<Pacient> Pacients= PacientsDatabase.Read();
+    private List<Doctor> Doctors = DoctorsDatabase.Read();
+    private List<Appointment> Appointments = AppointmentsDatabase.Read();
+
+
+
+
+    //Database db = Database.getDatabaseInstance();
     Audit audit = Audit.getAuditInstance();
 
-    Service(){}
+
+
+
+    Service() {}
 
     public List<Appointment> getAppointments() {
         return Appointments;
@@ -45,8 +57,10 @@ public class Service {
     }
 
     public void servicePacients() {
+        System.out.println(Pacients);
+        System.out.println(1);
 
-        initializeDB();
+        //initializeDB();
         System.out.println("Alegeti una din urmatoarele actiuni: ");
         System.out.println("1.Afisare pacienti in ordine alfabetica");
         System.out.println("2.Afisare pacienti minori");
@@ -68,7 +82,7 @@ public class Service {
 
                 for(Pacient it: Pacients)
                     System.out.println(it.toString());
-                audit.auditService("sortPacients");
+
                 break;
 
             }
@@ -95,7 +109,7 @@ public class Service {
                     }
                 if(found == 0)
                     System.out.println("Pacientul nu a fost gasit.");
-                audit.auditService("showPacientInfo");
+
                 break;
             }
             case 4:{
@@ -108,7 +122,7 @@ public class Service {
                 }
                 if(found == 0)
                     System.out.println("Toti pacientii inregistrati au asigurare medicala.");
-                audit.auditService("showPacientsWithInsurance");
+
                 break;
             }
             case 5:{
@@ -121,11 +135,10 @@ public class Service {
                 }
                 if(found == 0)
                     System.out.println("Niciun pacient inregistrat nu are Covid-19");
-                audit.auditService("showPacientsWithCovid19");
+
                 break;
             }
             case 6:{
-                int id = Pacients.size()+1;
                 System.out.println("Completati urmatorul formular:");
                 System.out.println("Nume:");
                 String firstName = scan.next();
@@ -138,10 +151,10 @@ public class Service {
                 System.out.println("Are testul Covid-19 facut? True/False");
                 boolean covidTest = scan.hasNextBoolean();
                 String symptoms = "";
-                Pacient pAdd = new Pacient(id,age,firstName,lastName,symptoms,insurance,covidTest);
-                Pacients.add(pAdd);
+                Pacient pAdd = new Pacient(age,firstName,lastName,symptoms,insurance,covidTest);
+                dbPacients.addPacient(age,firstName,lastName,symptoms,insurance,covidTest);
                 System.out.println("Pacientul " + pAdd.toString() + " a fost adaugat cu succes");
-                audit.auditService("addPacient");
+
                 break;
             }
             case 7:{
@@ -154,8 +167,7 @@ public class Service {
                 int found = 0;
                 for(int i=0;i<Pacients.size();i++)
                     if(Pacients.get(i).getLastName().equals(lastName) && Pacients.get(i).getFirstName().equals(firstName)){
-                        found = 1;
-                        Pacients.remove(i);
+                        dbPacients.deletePacient(firstName,lastName);
                     }
 
                 if(found == 0) {
@@ -163,7 +175,7 @@ public class Service {
                 }
                 else
                     System.out.println("Acest pacient a fost sters cu succes");
-                audit.auditService("deletePacient");
+
                 break;
             }
             default:{
@@ -187,7 +199,7 @@ public class Service {
             case 1:{
                 for(Doctor it: Doctors)
                     System.out.println(it.toString());
-                audit.auditService("showDoctors");
+
                 break;
             }
             case 2:{
@@ -261,32 +273,10 @@ public class Service {
                 String nrTel = scan.next();
                 System.out.println("Intervalul de pret:");
                 String priceRange = scan.next();
-                int id = Doctors.size()+1;
 
-                switch(type){
-                    case "Cardiologist":{
-                        Cardiologist obj = new Cardiologist(id,experience,firstName,lastName,age,nrTel,priceRange);
-                        Doctors.add(obj);
-                        break;
-                    }
-                    case "Dermatologist":{
-                        Dermatologist obj = new Dermatologist(id,experience,firstName,lastName,age,nrTel,priceRange);
-                        Doctors.add(obj);
-                        break;
-                    }
-                    case "Dentist":{
-                        Dentist obj = new Dentist(id,experience,firstName,lastName,age,nrTel,priceRange);
-                        Doctors.add(obj);
-                        break;
-                    }
-                    case "Psychologist":{
-                        Psychologist obj = new Psychologist(id,experience,firstName,lastName,age,nrTel,priceRange);
-                        Doctors.add(obj);
-                        break;
-                    }
-                }
+                Doctor ob = new Doctor(experience,type,firstName,lastName,age,nrTel,priceRange);
+                dbDoctors.addDoctor(ob);
                 System.out.println("Medicul a fost adaugat cu succes");
-                audit.auditService("addDoctor");
                 break;
             }
             case 5:{
@@ -298,14 +288,9 @@ public class Service {
                 int found = 0;
                 for(int i=0;i< Doctors.size();i++)
                     if(Doctors.get(i).getFirstName().equals(firstName) && Doctors.get(i).getLastName().equals(lastName)){
+                        dbDoctors.deleteDoctor(firstName,lastName);
                         found = 1;
-                        Doctors.remove(i);
                     }
-                if(found == 1) {
-                    System.out.println("Doctorul a fost sters cu succes");
-                }
-                else
-                    System.out.println("Doctorul nu este inregistrat in baza de date");
                 audit.auditService("deleteDoctor");
                 break;
             }
@@ -315,51 +300,31 @@ public class Service {
     public void serviceAppointments() throws ParseException {
 
         System.out.println("Alege una din urmatoarele actiuni:");
-        System.out.println("1.Afisare programari ce vor urma");
-        System.out.println("2.Afisare programari asignate unui doctor specificat");
+        System.out.println("1.Afisare programari");
+        System.out.println("2.Afiseaza ora si motivul unei programari");
         System.out.println("3.Adauga o programare");
-        System.out.println("4.Modifica data unei programari");
+        System.out.println("4.Modifica data si ora unei programari");
         System.out.println("5.Anuleaza o programare");
         Scanner scan = new Scanner(System.in);
         int op = scan.nextInt();
         switch(op){
             case 1:{
-                SimpleDateFormat dtf = new SimpleDateFormat("dd/mm/yyyy");
-                String data = new Date().toString();
-                Date today = dtf.parse(data);
-
-                for(Appointment it: Appointments){
-                    Date date = dtf.parse(it.getDate());
-                    if(date.after(today))
-                        System.out.println(it.toString());
-                }
-                audit.auditService("showFutureAppointments");
+                dbAppointments.showAppointments();
                 break;
             }
             case 2:{
-                System.out.println("Introduceti numele doctorului:");
-                String firstName = scan.next();
-                System.out.println("Introduceti prenumele");
-                String lastName = scan.next();
+                System.out.println("Introduceti id-ul pacientului:");
+                int idPacient = scan.nextInt();
+                System.out.println("Introduceti id-ul doctorului:");
+                int idDoctor = scan.nextInt();
 
-                int id = -1;
-
-                for(Doctor it:Doctors)
-                    if(it.getLastName().equals(lastName) && it.getFirstName().equals(firstName))
-                        id = it.getId();
-                if(id == -1)
-                    System.out.println("Doctorul specificat nu a fost gasit");
-                else{
-                    for(Appointment it:Appointments)
-                        if(it.getIdDoctor() == id)
-                            System.out.println(it.toString());
-                }
-                audit.auditService("showAppointmentsOfDoctor");
+                for(Appointment it:Appointments)
+                    if(it.getIdDoctor() == idDoctor && it.getIdPacient() == idPacient)
+                        System.out.println(it.toString());
                 break;
             }
             case 3:{
-                //TO DO verificare daca exista id-urile
-                SimpleDateFormat dtf = new SimpleDateFormat("dd/mm/yyyy");
+
                 System.out.println("Completati urmatorul formular");
                 System.out.println("Id-ul pacientului pentru care doriti sa faceti programarea");
                 int idPacient = scan.nextInt();
@@ -373,84 +338,53 @@ public class Service {
                 int hour = scan.nextInt();
 
                 Appointment newA = new Appointment(idPacient,idDoctor,motive,hour,date);
-                System.out.println("Programarea a fost efectuata cu succes");
-                audit.auditService("addApointment");
+                dbAppointments.addAppointment(idPacient,idDoctor,motive,hour,date);
                 break;
             }
             case 4:{
-                //SimpleDateFormat dtf = new SimpleDateFormat("dd/mm/yyyy");
+
                 System.out.println("Completati urmatorul formular");
                 System.out.println("Id-ul pacientului care are programarea");
                 int idPacient = scan.nextInt();
                 System.out.println("Id-ul doctorului asignat programarii");
                 int idDoctor = scan.nextInt();
-                System.out.println("Motivul programarii");
-                String motive = scan.next();
-                System.out.println("Data la care era stabilita programarea dd/mm/yyyy");
-                String date = scan.next();
-                System.out.println("Ora la care era stabilita programarea");
-                int hour = scan.nextInt();
 
-                int found = 1;
-                for(Appointment it:Appointments){
-                    if(it.getIdPacient() == idPacient && it.getIdDoctor() == idDoctor &&
-                            it.getMotive().equals(motive) && it.getDate().equals(date) && it.getHour() == hour) {
-                        System.out.println("Introduceti noua data:");
-                        String date1 = scan.next();
-                        it.setDate(date1);
-                        System.out.println("Introduceti ora");
-                        int hour1 = scan.nextInt();
-                        it.setHour(hour1);
-                        found = 1;
-                    }
-                }
-                if(found == 0)
-                    System.out.println("Aceasta programare nu este intregistrata");
-                audit.auditService("editAppointmentDate");
+                System.out.println("Introduceti noua data:");
+                String date = scan.next();
+
+                System.out.println("Introduceti noua ora");
+                String hour = scan.next();
+
+                AppointmentsDatabase.updateAppointment(idPacient,idDoctor,"DATE",date);
+                AppointmentsDatabase.updateAppointment(idPacient,idDoctor,"HOUR",hour);
                 break;
             }
             case 5:{
-                SimpleDateFormat dtf = new SimpleDateFormat("dd/mm/yyyy");
                 System.out.println("Completati urmatorul formular");
                 System.out.println("Id-ul pacientului care avea programarea");
                 int idPacient = scan.nextInt();
                 System.out.println("Id-ul doctorului asignat programarii");
                 int idDoctor = scan.nextInt();
-                System.out.println("Motivul programarii");
-                String motive = scan.next();
                 System.out.println("Data la care era stabilita programarea dd/mm/yyyy");
                 String date = scan.next();
                 System.out.println("Ora la care era stabilita programarea");
                 int hour = scan.nextInt();
 
-                Appointment objToDelete = new Appointment();
-                int found = 1;
-                for(int i=0;i< Appointments.size();i++){
-                    if(Appointments.get(i).getIdPacient() == idPacient && Appointments.get(i).getIdDoctor() == idDoctor
-                            && Appointments.get(i).getMotive().equals(motive) && Appointments.get(i).getDate().equals(date)
-                            && Appointments.get(i).getHour() == hour) {
-                        found = 1;
-                        Appointments.remove(i);
-                    }
-                }
-                if(found == 1){
-                    System.out.println("Programarea a fost anulata cu succes");
-                }
-                else
-                    System.out.println("Aceasta programare nu este intregistrata");
-                audit.auditService("cancelAppointment");
+                dbAppointments.deleteAppointment(idPacient,idDoctor,hour,date);
                 break;
             }
         }
     }
 
-    private void initializeDB() {
+
+
+    /*private void initializeDB() {
         String[] csvFiles = {"pacients.csv","doctors.csv","appointments.csv"};
 
         List<String[]> data = db.readDataFromCsv(csvFiles[0]);
 
         Pacients = data.stream()
-                .map(object -> new Pacient(Integer.parseInt(object[0]),Integer.parseInt(object[0]), object[2],object[3],object[4],Boolean.parseBoolean(object[5]),Boolean.parseBoolean(object[6])))
+                .map(object -> new Pacient(Integer.parseInt(object[0]), object[2],object[3],object[4],Boolean.parseBoolean(object[5]),Boolean.parseBoolean(object[6])))
                 .collect(Collectors.toList());
         System.out.println(Pacients);
 
@@ -465,6 +399,6 @@ public class Service {
                 .map(object -> new Appointment(Integer.parseInt(object[0]),Integer.parseInt(object[0]), object[2],Integer.parseInt(object[3]),object[4]))
                 .collect(Collectors.toList());
         System.out.println(Appointments);
-    }
+    }*/
 
 }

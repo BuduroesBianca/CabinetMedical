@@ -2,20 +2,20 @@ package MedicalOffice;
 
 import java.util.Vector;
 
-public class Pacient extends Person implements Comparable<Pacient>{
+public class Pacient extends Person implements Comparable<Pacient> {
 
     private String symptoms;
     private boolean insurance;
     private boolean covidTest;
 
-    public Pacient(){}
 
-    public Pacient(int id, int age, String firstName, String lastName, String symptoms, boolean insurance,boolean covidTest) {
-        super(id, age, firstName, lastName);
+    public Pacient(int age, String firstName, String lastName, String symptoms, boolean insurance, boolean covidTest) {
+        super(age, firstName, lastName);
         this.symptoms = symptoms;
         this.insurance = insurance;
         this.covidTest = covidTest;
     }
+
 
     public boolean isChild(){
         if (getAge() < 18)
@@ -35,6 +35,7 @@ public class Pacient extends Person implements Comparable<Pacient>{
         return false;
     }
 
+
     public String getSymptoms() {
         return symptoms;
     }
@@ -49,6 +50,14 @@ public class Pacient extends Person implements Comparable<Pacient>{
 
     public void setInsurance(boolean insurance) {
         this.insurance = insurance;
+    }
+
+    public boolean isCovidTest() {
+        return covidTest;
+    }
+
+    public void setCovidTest(boolean covidTest) {
+        this.covidTest = covidTest;
     }
 
     @Override
