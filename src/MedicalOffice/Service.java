@@ -167,7 +167,7 @@ public class Service {
                 int found = 0;
                 for(int i=0;i<Pacients.size();i++)
                     if(Pacients.get(i).getLastName().equals(lastName) && Pacients.get(i).getFirstName().equals(firstName)){
-                        dbPacients.deletePacient(firstName,lastName);
+                        //dbPacients.deletePacient(firstName,lastName);
                     }
 
                 if(found == 0) {
@@ -288,7 +288,7 @@ public class Service {
                 int found = 0;
                 for(int i=0;i< Doctors.size();i++)
                     if(Doctors.get(i).getFirstName().equals(firstName) && Doctors.get(i).getLastName().equals(lastName)){
-                        dbDoctors.deleteDoctor(firstName,lastName);
+                        //dbDoctors.deleteDoctor(firstName,lastName);
                         found = 1;
                     }
                 audit.auditService("deleteDoctor");
@@ -370,7 +370,7 @@ public class Service {
                 System.out.println("Ora la care era stabilita programarea");
                 int hour = scan.nextInt();
 
-                dbAppointments.deleteAppointment(idPacient,idDoctor,hour,date);
+                //dbAppointments.deleteAppointment(idPacient,idDoctor,hour,date);
                 break;
             }
         }

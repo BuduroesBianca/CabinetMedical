@@ -11,6 +11,7 @@ public class Doctor {
     private int age;
     private String telephoneNumber;
     private String priceRange;
+    private int id;
 
     public Doctor(){}
     public Doctor(int yearsOfExperience, String specialty,String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
@@ -22,6 +23,22 @@ public class Doctor {
         this.age = age;
         this.telephoneNumber = telephoneNumber;
         this.priceRange = priceRange;
+    }
+
+    public Doctor(int id,int yearsOfExperience, String specialty,String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
+
+        this.id = id;
+        this.yearsOfExperience = yearsOfExperience;
+        this.specialty = specialty;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.telephoneNumber = telephoneNumber;
+        this.priceRange = priceRange;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getSpecialty() {

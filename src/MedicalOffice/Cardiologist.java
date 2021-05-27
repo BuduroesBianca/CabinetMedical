@@ -8,6 +8,10 @@ public class Cardiologist extends Doctor{
         super(yearsOfExperience,specialty, firstName, lastName, age, telephoneNumber, priceRange);
     }
 
+    public Cardiologist(int id,int yearsOfExperience, String specialty,String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
+        super(id,yearsOfExperience,specialty, firstName, lastName, age, telephoneNumber, priceRange);
+    }
+
     @Override
     public String toString(){
         return "Medic Cardiolog " + getFirstName() + " " + getLastName() + " Ani de experienta " + getYearsOfExperience()

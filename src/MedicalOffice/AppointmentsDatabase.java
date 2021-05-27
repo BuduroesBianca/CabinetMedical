@@ -105,9 +105,9 @@ public class AppointmentsDatabase {
     public static List<Appointment> Read() {
         List<Appointment> appointments = new ArrayList<>();
         try {
-            ResultSet results = connection.createStatement().executeQuery("SELECT IDPACIENT,IDDOCTOR,MOTIVE,ORA,DATE FROM appointments");
+            ResultSet results = connection.createStatement().executeQuery("SELECT ID,IDPACIENT,IDDOCTOR,MOTIVE,ORA,DATE FROM appointments");
             while (results.next()) {
-                appointments.add(new Appointment(results.getInt(1), results.getInt(2), results.getString(3), results.getInt(4), results.getString(5)));
+                appointments.add(new Appointment(results.getInt(1),results.getInt(2), results.getInt(3), results.getString(4), results.getInt(5), results.getString(6)));
             }
             return appointments;
         }catch(SQLException e){
@@ -194,13 +194,10 @@ public class AppointmentsDatabase {
         }
     }
 
-    public void deleteAppointment(int idPacient,int idDoctor,int ora,String data){
+    public void deleteAppointment(int id){
         try{
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM appointments WHERE idPacient = ? and idDoctor = ? and ora = ? and date = ?");
-            stmt.setInt(1,idPacient);
-            stmt.setInt(2,idDoctor);
-            stmt.setInt(3,ora);
-            stmt.setString(4,data);
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM appointments WHERE id = ?");
+            stmt.setInt(1,id);
 
             stmt.executeUpdate();
             System.out.println("Programarea a fost anulata.");

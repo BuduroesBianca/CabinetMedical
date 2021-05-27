@@ -6,6 +6,10 @@ public class Dermatologist extends Doctor{
         super(yearsOfExperience, specialty,firstName, lastName, age, telephoneNumber, priceRange);
     }
 
+    public Dermatologist(int id,int yearsOfExperience, String specialty,String firstName, String lastName, int age, String telephoneNumber, String priceRange) {
+        super(id,yearsOfExperience, specialty,firstName, lastName, age, telephoneNumber, priceRange);
+    }
+
     @Override
     public String toString(){
         return "Medic Dermatolog " + getFirstName() + " " + getLastName() + " Ani de experienta " + getYearsOfExperience()

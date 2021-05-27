@@ -7,6 +7,11 @@ import java.text.SimpleDateFormat;
 
 public class Main {
     public static void main(String[] args) throws ParseException {
+        try {
+            new MedicalOfficeFrame().setVisible(true);
+        } catch (SQLException exception) {
+            exception.printStackTrace();
+        }
         Service service = new Service();
 
         PacientsDatabase dbP = PacientsDatabase.getDatabaseInstance();
@@ -22,9 +27,16 @@ public class Main {
         Doctor d1 = new Doctor(30,"Dentist","dentist","dentist",78,"88","$");
         Doctor d2 = new Doctor(7,"Psychologist","psycho","psycho",80,"99","$$$");
 
+        Doctor d4 = new Doctor(260,"Cardiologist","","",90,"","");
+        System.out.println(d4.toString());
+        //dbD.addDoctor(d4);
         //dbD.addDoctor(d);
         //dbD.addDoctor(d1);
         //dbD.addDoctor(d2);
+        dbD.showDoctors();
+
+        List<Doctor> dds = DoctorsDatabase.Read();
+        System.out.println(dds);
 
         //dbD.dropTable();
         //dbD.addDoctor(30,"nume","prenume",68,"0758354671","$$");

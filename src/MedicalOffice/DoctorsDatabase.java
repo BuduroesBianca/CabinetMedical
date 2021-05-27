@@ -105,20 +105,25 @@ public class DoctorsDatabase {
     public static List<Doctor> Read() {
         List<Doctor> doctors = new ArrayList<>();
         try {
-            ResultSet results = connection.createStatement().executeQuery("SELECT YEARSOFEXPERIENCE,SPECIALTY,FIRSTNAME,LASTNAME,AGE,TELEPHONENUMBER,PRICERANGE FROM doctors");
+            ResultSet results = connection.createStatement().executeQuery("SELECT ID,YEARSOFEXPERIENCE,SPECIALTY,FIRSTNAME,LASTNAME,AGE,TELEPHONENUMBER,PRICERANGE FROM doctors");
             while (results.next()) {
-                switch(results.getString(2)){
+                System.out.println(results.getString(3));
+                switch(results.getString(3)){
                     case "Cardiologist" : {
-                        doctors.add(new Cardiologist(results.getInt(1),results.getString(2), results.getString(3), results.getString(4), results.getInt(5), results.getString(6), results.getString(7)));
+                        doctors.add(new Cardiologist(results.getInt(1),results.getInt(2),results.getString(3), results.getString(4), results.getString(5), results.getInt(6), results.getString(7), results.getString(8)));
+                        break;
                     }
                     case "Dentist" : {
-                        doctors.add(new Dentist(results.getInt(1),results.getString(2), results.getString(3), results.getString(4), results.getInt(5), results.getString(6), results.getString(7)));
+                        doctors.add(new Dentist(results.getInt(1),results.getInt(2),results.getString(3), results.getString(4), results.getString(5), results.getInt(6), results.getString(7), results.getString(8)));
+                        break;
                     }
                     case "Dermatologist" : {
-                        doctors.add(new Dermatologist(results.getInt(1),results.getString(2), results.getString(3), results.getString(4), results.getInt(5), results.getString(6), results.getString(7)));
+                        doctors.add(new Dermatologist(results.getInt(1),results.getInt(2),results.getString(3), results.getString(4), results.getString(5), results.getInt(6), results.getString(7), results.getString(8)));
+                        break;
                     }
                     case "Psychologist" : {
-                        doctors.add(new Psychologist(results.getInt(1),results.getString(2), results.getString(3), results.getString(4), results.getInt(5), results.getString(6), results.getString(7)));
+                        doctors.add(new Psychologist(results.getInt(1),results.getInt(2),results.getString(3), results.getString(4), results.getString(5), results.getInt(6), results.getString(7), results.getString(8)));
+                        break;
                     }
                 }
 
@@ -224,11 +229,11 @@ public class DoctorsDatabase {
         }
     }
 
-    public void deleteDoctor(String firstName, String lastName){
+    public void deleteDoctor(int id){
         try{
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM doctors WHERE firstName = ? and lastName = ?");
-            stmt.setString(1,firstName);
-            stmt.setString(2,lastName);
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM doctors WHERE id = ?");
+            stmt.setInt(1,id);
+
 
             stmt.executeUpdate();
             System.out.println("Doctorul a fost sters cu succes.");

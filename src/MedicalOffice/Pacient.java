@@ -7,6 +7,7 @@ public class Pacient extends Person implements Comparable<Pacient> {
     private String symptoms;
     private boolean insurance;
     private boolean covidTest;
+    private int Id;
 
 
     public Pacient(int age, String firstName, String lastName, String symptoms, boolean insurance, boolean covidTest) {
@@ -16,6 +17,17 @@ public class Pacient extends Person implements Comparable<Pacient> {
         this.covidTest = covidTest;
     }
 
+    public Pacient(int Id,int age, String firstName, String lastName, String symptoms, boolean insurance, boolean covidTest) {
+        super(age, firstName, lastName);
+        this.Id = Id;
+        this.symptoms = symptoms;
+        this.insurance = insurance;
+        this.covidTest = covidTest;
+    }
+
+    public int getId() {
+        return Id;
+    }
 
     public boolean isChild(){
         if (getAge() < 18)

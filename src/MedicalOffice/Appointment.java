@@ -10,6 +10,7 @@ public class Appointment{
     private String motive;
     private int hour;
     private String date;
+    private int id;
 
     public Appointment(){}
 
@@ -19,6 +20,19 @@ public class Appointment{
         this.motive = motive;
         this.hour = hour;
         this.date = date;
+    }
+
+    public Appointment(int id,int idPacient, int idDoctor, String motive, int hour, String date) {
+        this.id = id;
+        this.idPacient = idPacient;
+        this.idDoctor = idDoctor;
+        this.motive = motive;
+        this.hour = hour;
+        this.date = date;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getIdPacient() {

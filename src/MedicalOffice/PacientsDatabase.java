@@ -109,9 +109,9 @@ public class PacientsDatabase {
     public static List<Pacient> Read() {
         List<Pacient> pacients = new ArrayList<>();
         try {
-            ResultSet results = connection.createStatement().executeQuery("SELECT AGE,FIRSTNAME,LASTNAME,SYMPTOMS,INSURANCE,COVIDTEST FROM pacients");
+            ResultSet results = connection.createStatement().executeQuery("SELECT ID,AGE,FIRSTNAME,LASTNAME,SYMPTOMS,INSURANCE,COVIDTEST FROM pacients");
             while (results.next()) {
-                pacients.add(new Pacient(results.getInt(1), results.getString(2), results.getString(3), results.getString(4), results.getBoolean(5), results.getBoolean(6)));
+                pacients.add(new Pacient(results.getInt(1),results.getInt(2), results.getString(3), results.getString(4), results.getString(5), results.getBoolean(6), results.getBoolean(7)));
             }
             return pacients;
         }catch(SQLException e){
@@ -212,11 +212,12 @@ public class PacientsDatabase {
         }
     }
 
-    public void deletePacient(String firstName, String lastName){
+
+    public void deletePacient(int id){
         try{
-            PreparedStatement stmt = connection.prepareStatement("DELETE FROM pacients WHERE firstName = ? and lastName = ?");
-            stmt.setString(2,firstName);
-            stmt.setString(3,lastName);
+            PreparedStatement stmt = connection.prepareStatement("DELETE FROM pacients WHERE id = ?");
+            stmt.setInt(1,id);
+
 
             stmt.executeUpdate();
             System.out.println("Pacientul a fost sters cu succes.");

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed May 26 20:31:44 EEST 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.1.3 - (1853019): instance a816c00e-0179-a9bb-7192-00000f27fa90 
+Fri May 28 01:22:00 EEST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.1.3 - (1853019): instance a816c00e-0179-afeb-8d73-00000eb04fa8 
 on database directory C:\Users\Bianca\source\repos\MedicalOffice\MedicalOfficeDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@1d44bcfa 
 Loaded from file:/C:/derby/db-derby-10.15.1.3-lib/db-derby-10.15.1.3-lib/lib/derby.jar
 java.vendor=Oracle Corporation
