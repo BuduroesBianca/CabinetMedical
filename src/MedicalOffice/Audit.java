@@ -13,9 +13,21 @@ public final class Audit {
         return audit;
     }
 
-    protected void auditService(String action){
+    protected void auditServicePacients(String action){
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        String [] data = {action, timestamp.toString()};
-        //Database.writeDataToCsv("auditLog.csv", data);
+        String [] data = {action, timestamp.toString(),Thread.currentThread().getName()};
+        PacientsDatabase.writeDataToCsv("auditLog.csv", data);
+    }
+
+    protected void auditServiceDoctors(String action){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String [] data = {action, timestamp.toString(),Thread.currentThread().getName()};
+        DoctorsDatabase.writeDataToCsv("auditLog.csv", data);
+    }
+
+    protected void auditServiceAppointments(String action){
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String [] data = {action, timestamp.toString(),Thread.currentThread().getName()};
+        AppointmentsDatabase.writeDataToCsv("auditLog.csv", data);
     }
 }

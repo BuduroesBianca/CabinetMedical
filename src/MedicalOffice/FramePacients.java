@@ -25,7 +25,6 @@ public class FramePacients extends JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel label;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -42,13 +41,13 @@ public class FramePacients extends JFrame {
     private javax.swing.JTextField txtSymptoms;
     private javax.swing.JTextField txtInsurance;
     private javax.swing.JTextField txtCovidTest;
-    private javax.swing.JTextField txtId;
     private javax.swing.JLabel jLabel20;
 
 
 
     PacientsDatabase db = PacientsDatabase.getDatabaseInstance();
     List<Pacient> pacients = PacientsDatabase.Read();
+    Audit audit = Audit.getAuditInstance();
 
     private JPanel contentPane;
 
@@ -65,30 +64,20 @@ public class FramePacients extends JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtLname = new javax.swing.JTextField();
-
-        txtId = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-
         txtAge = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-
         txtFieldToUpdate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-
         txtUpdatedValue = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-
         txtSymptoms = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-
         txtInsurance = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-
         txtCovidTest = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-
         jLabel20 = new javax.swing.JLabel();
-
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPacients = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
@@ -103,7 +92,7 @@ public class FramePacients extends JFrame {
         setResizable(false);
 
 
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel1.setText("First Name");
         jLabel1.setVisible(false);
         txtFname.setVisible(false);
@@ -112,7 +101,7 @@ public class FramePacients extends JFrame {
         jLabel1.setForeground(Color.WHITE);
         jLabel1.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel2.setText("Last Name");
         jLabel2.setVisible(false);
         txtLname.setVisible(false);
@@ -121,7 +110,7 @@ public class FramePacients extends JFrame {
         jLabel2.setForeground(Color.WHITE);
         jLabel2.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel3.setText("Age");
         jLabel3.setVisible(false);
         txtAge.setVisible(false);
@@ -130,7 +119,7 @@ public class FramePacients extends JFrame {
         jLabel3.setForeground(Color.WHITE);
         jLabel3.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel4.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel4.setText("Field To Update");
         jLabel4.setVisible(false);
         txtFieldToUpdate.setVisible(false);
@@ -139,7 +128,7 @@ public class FramePacients extends JFrame {
         jLabel4.setForeground(Color.WHITE);
         jLabel4.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel5.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel5.setText("Updated Value");
         jLabel5.setVisible(false);
         txtUpdatedValue.setVisible(false);
@@ -148,7 +137,7 @@ public class FramePacients extends JFrame {
         jLabel5.setForeground(Color.WHITE);
         jLabel5.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel6.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel6.setText("Symptoms");
         jLabel6.setVisible(false);
         txtSymptoms.setVisible(false);
@@ -157,7 +146,7 @@ public class FramePacients extends JFrame {
         jLabel6.setForeground(Color.WHITE);
         jLabel6.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel7.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel7.setText("Insurance");
         jLabel7.setVisible(false);
         txtInsurance.setVisible(false);
@@ -166,7 +155,7 @@ public class FramePacients extends JFrame {
         jLabel7.setForeground(Color.WHITE);
         jLabel7.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel8.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel8.setText("CovidTest");
         jLabel8.setVisible(false);
         txtCovidTest.setVisible(false);
@@ -175,11 +164,11 @@ public class FramePacients extends JFrame {
         jLabel8.setForeground(Color.WHITE);
         jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
 
-        jLabel9.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 12));
         jLabel9.setText("Last Name");
 
         jLabel20 = new JLabel("Please",JLabel.CENTER);
-        jLabel20.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD, 14));
         jLabel20.setText("Please select one of the options above");
         jLabel20.setOpaque(true);
         jLabel20.setBackground(Color.LIGHT_GRAY);
@@ -189,7 +178,6 @@ public class FramePacients extends JFrame {
 
         tblPacients.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-
                 },
                 new String[]{
                         "Id", "First Name", "Last Name", "Age", "Symptoms", "Insurance", "CovidTest"
@@ -375,19 +363,14 @@ public class FramePacients extends JFrame {
         if (!txtFname.isVisible() || !txtLname.isVisible() || !txtAge.isVisible() || !txtSymptoms.isVisible() || !txtInsurance.isVisible() || !txtCovidTest.isVisible()) {
             jLabel1.setVisible(true);
             txtFname.setVisible(true);
-
             jLabel2.setVisible(true);
             txtLname.setVisible(true);
-
             jLabel3.setVisible(true);
             txtAge.setVisible(true);
-
             jLabel6.setVisible(true);
             txtSymptoms.setVisible(true);
-
             jLabel7.setVisible(true);
             txtInsurance.setVisible(true);
-
             jLabel8.setVisible(true);
             txtCovidTest.setVisible(true);
             jLabel4.setVisible(false);
@@ -395,6 +378,7 @@ public class FramePacients extends JFrame {
             jLabel5.setVisible(false);
             txtFieldToUpdate.setVisible(false);
             jLabel20.setVisible(false);
+
         } else {
 
             String fname = txtFname.getText().trim();
@@ -411,25 +395,24 @@ public class FramePacients extends JFrame {
                 Pacient p = new Pacient(Integer.parseInt(age), fname, lname, symptoms, Boolean.parseBoolean(insurance), Boolean.parseBoolean(covid));
                 pacients.add(p);
                 fetchLast();
+                audit.auditServicePacients("Add pacient");
                 jLabel1.setVisible(false);
                 txtFname.setVisible(false);
 
                 jLabel2.setVisible(false);
                 txtLname.setVisible(false);
-
                 jLabel3.setVisible(false);
                 txtAge.setVisible(false);
-
                 jLabel6.setVisible(false);
                 txtSymptoms.setVisible(false);
-
                 jLabel7.setVisible(false);
                 txtInsurance.setVisible(false);
-
                 jLabel8.setVisible(false);
                 txtCovidTest.setVisible(false);
+                jLabel20.setVisible(true);
+
             } else {
-                alert("please fill in all the details");
+                alert("Please fill in all the details");
             }
         }
     }
@@ -445,20 +428,16 @@ public class FramePacients extends JFrame {
             jLabel5.setVisible(true);
             jLabel1.setVisible(true);
             jLabel2.setVisible(true);
-
             jLabel3.setVisible(false);
             txtAge.setVisible(false);
-
             jLabel6.setVisible(false);
             txtSymptoms.setVisible(false);
-
             jLabel7.setVisible(false);
             txtInsurance.setVisible(false);
-
             jLabel8.setVisible(false);
             txtCovidTest.setVisible(false);
-
             jLabel20.setVisible(false);
+
         } else {
 
             String fname = txtFname.getText().trim();
@@ -474,7 +453,7 @@ public class FramePacients extends JFrame {
                 model.setRowCount(0);
                 fetch();
                 alert("Update was successful");
-
+                audit.auditServicePacients("Update Pacient");
                 txtFieldToUpdate.setVisible(false);
                 txtUpdatedValue.setVisible(false);
                 txtLname.setVisible(false);
@@ -484,6 +463,7 @@ public class FramePacients extends JFrame {
                 jLabel1.setVisible(false);
                 jLabel2.setVisible(false);
                 jLabel20.setVisible(true);
+
             } else {
                 alert("There is no such pacient", "Update error");
                 clear();
@@ -491,7 +471,6 @@ public class FramePacients extends JFrame {
         }
 
     }
-
 
     private void tblPacientsMouseClicked(java.awt.event.MouseEvent evt) {
         int i = tblPacients.getSelectedRow();
@@ -507,28 +486,23 @@ public class FramePacients extends JFrame {
 
     private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {
         jLabel20.setVisible(true);
-
         jLabel4.setVisible(false);
         txtUpdatedValue.setVisible(false);
         jLabel5.setVisible(false);
         txtFieldToUpdate.setVisible(false);
         jLabel1.setVisible(false);
         txtFname.setVisible(false);
-
         jLabel2.setVisible(false);
         txtLname.setVisible(false);
-
         jLabel3.setVisible(false);
         txtAge.setVisible(false);
-
         jLabel6.setVisible(false);
         txtSymptoms.setVisible(false);
-
         jLabel7.setVisible(false);
         txtInsurance.setVisible(false);
-
         jLabel8.setVisible(false);
         txtCovidTest.setVisible(false);
+
         int i = tblPacients.getSelectedRow();
         if (i >= 0) {
             int option = JOptionPane.showConfirmDialog(rootPane,
@@ -542,6 +516,7 @@ public class FramePacients extends JFrame {
                     pacients.remove(tblPacients.getSelectedRow());
                     DefaultTableModel model1 = (DefaultTableModel) tblPacients.getModel();
                     model1.setRowCount(0);
+                    audit.auditServicePacients("Delete Pacient");
                     fetch();
                     clear();
                 }
@@ -549,9 +524,7 @@ public class FramePacients extends JFrame {
         } else {
             alert("Please select a row to delete");
         }
-
     }
-
 
     public void alert(String a) {
         JOptionPane.showMessageDialog(rootPane, a);
@@ -586,8 +559,6 @@ public class FramePacients extends JFrame {
         row[5] = d.hasInsurance();
         row[6] = d.hasCovid();
 
-
-
         model.addRow(row);
 
     }
@@ -605,7 +576,6 @@ public class FramePacients extends JFrame {
                 row[4] = p.getSymptoms();
                 row[5] = p.hasInsurance();
                 row[6] = p.hasCovid();
-
 
                 model.addRow(row);
             }

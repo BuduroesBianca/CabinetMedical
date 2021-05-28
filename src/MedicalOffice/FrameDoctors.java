@@ -26,7 +26,6 @@ public class FrameDoctors extends JFrame
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel label;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -47,9 +46,9 @@ public class FrameDoctors extends JFrame
     private javax.swing.JTextField txtPriceRange;
 
 
-
     DoctorsDatabase db = DoctorsDatabase.getDatabaseInstance();
     List<Doctor> doctors = DoctorsDatabase.Read();
+    Audit audit = Audit.getAuditInstance();
 
     private JPanel contentPane;
 
@@ -65,32 +64,23 @@ public class FrameDoctors extends JFrame
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtLname = new javax.swing.JTextField();
-
         txtPriceRange = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-
         txtAge = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-
         txtFieldToUpdate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-
         txtUpdatedValue = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-
         txtYearsOfExperience = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-
         txtSpecialty = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-
         txtPriceRange = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-
         txtTelephone = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-
         jScrollPane1 = new javax.swing.JScrollPane();
         tblDoctors = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
@@ -275,8 +265,6 @@ public class FrameDoctors extends JFrame
         tblDoctors.setForeground(Color.WHITE);
 
 
-
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -389,22 +377,17 @@ public class FrameDoctors extends JFrame
         if(!txtFname.isVisible() || !txtLname.isVisible() || !txtAge.isVisible() || !txtYearsOfExperience.isVisible() || !txtSpecialty.isVisible() || !txtTelephone.isVisible()) {
             jLabel1.setVisible(true);
             txtFname.setVisible(true);
-
             jLabel2.setVisible(true);
             txtLname.setVisible(true);
-
             jLabel3.setVisible(true);
             txtAge.setVisible(true);
             jLabel20.setVisible(false);
             jLabel6.setVisible(true);
             txtYearsOfExperience.setVisible(true);
-
             jLabel7.setVisible(true);
             txtSpecialty.setVisible(true);
-
             jLabel10.setVisible(true);
             txtPriceRange.setVisible(true);
-
             jLabel8.setVisible(true);
             txtTelephone.setVisible(true);
             jLabel4.setVisible(false);
@@ -417,42 +400,38 @@ public class FrameDoctors extends JFrame
 
             String fname = txtFname.getText().trim();
             String lname = txtLname.getText().trim();
-            String age = txtAge.getText().trim();
-            String years = txtYearsOfExperience.getText().trim();
+            String age = txtYearsOfExperience.getText().trim();
+            String years = txtAge.getText().trim();
             String type = txtSpecialty.getText().trim();
             String nrTel = txtTelephone.getText().trim();
             String priceRange = txtPriceRange.getText().trim();
 
             if (!fname.isEmpty() && !lname.isEmpty() && !age.isEmpty() && !years.isEmpty() && !type.isEmpty() && !nrTel.isEmpty() && !priceRange.isEmpty()) {
 
-                Doctor d = new Doctor(Integer.parseInt(age), type,fname, lname, Integer.parseInt(age), nrTel, priceRange);
+                Doctor d = new Doctor(Integer.parseInt(age), type,fname, lname, Integer.parseInt(years), nrTel, priceRange);
                 db.addDoctor(d);
                 doctors.add(d);
                 clear();
                 fetchLast();
+                audit.auditServiceDoctors("Add Doctor");
                 //doctors.remove(doctors.size()-1);
                 jLabel1.setVisible(false);
                 txtFname.setVisible(false);
-
                 jLabel2.setVisible(false);
                 txtLname.setVisible(false);
-
                 jLabel3.setVisible(false);
                 txtAge.setVisible(false);
-
                 jLabel6.setVisible(false);
                 txtYearsOfExperience.setVisible(false);
-
                 jLabel7.setVisible(false);
                 txtSpecialty.setVisible(false);
-
                 jLabel8.setVisible(false);
                 txtTelephone.setVisible(false);
                 jLabel10.setVisible(false);
                 txtPriceRange.setVisible(false);
 
             } else {
-                alert("please fill in all the details");
+                alert("Please fill in all the details");
             }
         }
     }
@@ -472,13 +451,10 @@ public class FrameDoctors extends JFrame
             jLabel20.setVisible(false);
             jLabel3.setVisible(false);
             txtAge.setVisible(false);
-
             jLabel6.setVisible(false);
             txtYearsOfExperience.setVisible(false);
-
             jLabel7.setVisible(false);
             txtSpecialty.setVisible(false);
-
             jLabel8.setVisible(false);
             txtTelephone.setVisible(false);
             jLabel10.setVisible(false);
@@ -500,7 +476,7 @@ public class FrameDoctors extends JFrame
                 model.setRowCount(0);
                 fetch();
                 alert("Update was successful");
-
+                audit.auditServiceDoctors("Update Doctor");
                 txtFieldToUpdate.setVisible(false);
                 txtUpdatedValue.setVisible(false);
                 txtLname.setVisible(false);
@@ -539,19 +515,14 @@ public class FrameDoctors extends JFrame
         txtFieldToUpdate.setVisible(false);
         jLabel1.setVisible(false);
         txtFname.setVisible(false);
-
         jLabel2.setVisible(false);
         txtLname.setVisible(false);
-
         jLabel3.setVisible(false);
         txtAge.setVisible(false);
-
         jLabel6.setVisible(false);
         txtYearsOfExperience.setVisible(false);
-
         jLabel7.setVisible(false);
         txtSpecialty.setVisible(false);
-
         jLabel8.setVisible(false);
         txtTelephone.setVisible(false);
         jLabel10.setVisible(false);
@@ -570,6 +541,7 @@ public class FrameDoctors extends JFrame
                     doctors.remove(tblDoctors.getSelectedRow());
                     DefaultTableModel model1 = (DefaultTableModel) tblDoctors.getModel();
                     model1.setRowCount(0);
+                    audit.auditServiceDoctors("Delete Doctor");
                     fetch();
                     clear();
                 }
@@ -614,7 +586,6 @@ public class FrameDoctors extends JFrame
         row[6] = d.getTelephoneNumber();
         row[7] = d.getPriceRange();
 
-
         model.addRow(row);
 
     }
@@ -632,7 +603,6 @@ public class FrameDoctors extends JFrame
             row[5] = d.getSpecialty();
             row[6] = d.getTelephoneNumber();
             row[7] = d.getPriceRange();
-
 
             model.addRow(row);
         }

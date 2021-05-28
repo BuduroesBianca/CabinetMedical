@@ -91,7 +91,7 @@ public class Service {
                     if(it.isChild()) {
                         System.out.println(it.toString());
                     }
-                audit.auditService("displayChildPacients");
+                //audit.auditService("displayChildPacients");
                 break;
 
             }
@@ -242,7 +242,7 @@ public class Service {
                         System.out.println("Optiunea nu este valida");
                     }
                 }
-                audit.auditService("showDoctorsBySpecialty");
+                //audit.auditService("showDoctorsBySpecialty");
                 break;
             }
             case 3:{
@@ -254,7 +254,7 @@ public class Service {
                 });
                 for(Doctor it:Doctors)
                     System.out.println(it.toString());
-                audit.auditService("sortDoctorsByYearsOfExperience");
+                //audit.auditService("sortDoctorsByYearsOfExperience");
                 break;
             }
             case 4:{
@@ -291,7 +291,7 @@ public class Service {
                         //dbDoctors.deleteDoctor(firstName,lastName);
                         found = 1;
                     }
-                audit.auditService("deleteDoctor");
+                //audit.auditService("deleteDoctor");
                 break;
             }
         }

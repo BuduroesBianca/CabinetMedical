@@ -43,9 +43,9 @@ public class FrameAppointments extends JFrame
     private javax.swing.JTextField txtUpdatedValue;
 
 
-
     AppointmentsDatabase db = AppointmentsDatabase.getDatabaseInstance1();
     List<Appointment> appointments = AppointmentsDatabase.Read();
+    Audit audit = Audit.getAuditInstance();
 
     private JPanel contentPane;
 
@@ -59,27 +59,19 @@ public class FrameAppointments extends JFrame
 
         txtIdPacient = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-
         txtIdDoctor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-
         txtMotive = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-
         txtHour = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-
         txtFieldToUpdate = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-
         txtUpdatedValue = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-
         jLabel20 = new javax.swing.JLabel();
-
         txtDate = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblAppointments = new javax.swing.JTable();
@@ -93,7 +85,6 @@ public class FrameAppointments extends JFrame
         //setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Appointments");
         setResizable(false);
-
 
         jLabel1.setFont(new java.awt.Font("Microsoft YaHei UI", Font.BOLD,12)); // NOI18N
         jLabel1.setText("Id Pacient");
@@ -170,7 +161,6 @@ public class FrameAppointments extends JFrame
 
         tblAppointments.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-
                 },
                 new String [] {
                         "Id","Id Pacient", "Id Doctor", "Motive","Hour","Date"
@@ -248,8 +238,6 @@ public class FrameAppointments extends JFrame
         tblAppointments.setBackground(Color.decode("#4676b4"));
         tblAppointments.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 11));
         tblAppointments.setForeground(Color.WHITE);
-
-
 
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -352,19 +340,14 @@ public class FrameAppointments extends JFrame
             jLabel1.setVisible(true);
             txtIdPacient.setVisible(true);
             jLabel20.setVisible(false);
-
             jLabel2.setVisible(true);
             txtIdDoctor.setVisible(true);
-
             jLabel3.setVisible(true);
             txtMotive.setVisible(true);
-
             jLabel6.setVisible(true);
             txtHour.setVisible(true);
-
             jLabel7.setVisible(true);
             txtDate.setVisible(true);
-
             jLabel4.setVisible(false);
             txtUpdatedValue.setVisible(false);
             jLabel5.setVisible(false);
@@ -387,25 +370,20 @@ public class FrameAppointments extends JFrame
                 appointments.add(a);
                 clear();
                 fetchLast();
-
+                audit.auditServiceAppointments("Add Appointment");
                 jLabel1.setVisible(false);
                 txtIdPacient.setVisible(false);
-
                 jLabel2.setVisible(false);
                 txtIdDoctor.setVisible(false);
-
                 jLabel3.setVisible(false);
                 txtMotive.setVisible(false);
-
                 jLabel6.setVisible(false);
-
                 jLabel7.setVisible(false);
                 txtHour.setVisible(false);
-
                 txtDate.setVisible(false);
 
             } else {
-                alert("please fill in all the details");
+                alert("Please fill in all the details");
             }
         }
     }
@@ -423,17 +401,12 @@ public class FrameAppointments extends JFrame
             jLabel5.setVisible(true);
             jLabel1.setVisible(true);
             jLabel2.setVisible(true);
-
             jLabel3.setVisible(false);
             txtMotive.setVisible(false);
-
             jLabel6.setVisible(false);
-
             jLabel7.setVisible(false);
             txtHour.setVisible(false);
-
             txtDate.setVisible(false);
-
 
         }
         else{
@@ -451,7 +424,7 @@ public class FrameAppointments extends JFrame
                 model.setRowCount(0);
                 fetch();
                 alert("Update was successful");
-
+                audit.auditServiceAppointments("Update Appointment");
                 txtFieldToUpdate.setVisible(false);
                 txtUpdatedValue.setVisible(false);
                 txtIdDoctor.setVisible(false);
@@ -490,18 +463,13 @@ public class FrameAppointments extends JFrame
         txtFieldToUpdate.setVisible(false);
         jLabel1.setVisible(false);
         txtIdPacient.setVisible(false);
-
         jLabel2.setVisible(false);
         txtIdDoctor.setVisible(false);
-
         jLabel3.setVisible(false);
         txtMotive.setVisible(false);
-
         jLabel6.setVisible(false);
-
         jLabel7.setVisible(false);
         txtHour.setVisible(false);
-
         txtDate.setVisible(false);
 
 
@@ -518,6 +486,7 @@ public class FrameAppointments extends JFrame
                     appointments.remove(tblAppointments.getSelectedRow());
                     DefaultTableModel model1 = (DefaultTableModel) tblAppointments.getModel();
                     model1.setRowCount(0);
+                    audit.auditServiceAppointments("Delete Appointment");
                     fetch();
                     clear();
                 }
@@ -557,7 +526,6 @@ public class FrameAppointments extends JFrame
         row[3] = a.getMotive();
         row[4] = a.getHour();
         row[5] = a.getDate();
-
 
 
         model.addRow(row);

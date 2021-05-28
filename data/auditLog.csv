@@ -1,6 +1,49 @@
-sortPacients,2021-05-07 16:42:28.223
-displayChildPacients,2021-05-07 16:43:18.894
-showPacientInfo,2021-05-07 16:43:26.04
-showPacientsWithCovid19,2021-05-07 16:43:30.226
-sortPacients,2021-05-07 16:58:21.996
-showDoctors,2021-05-07 16:58:28.638
+Delete Pacient,2021-05-28 10:20:49.467,AWT-EventQueue-0
+Add pacient,2021-05-28 10:20:58.711,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:21:11.689,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:21:14.386,AWT-EventQueue-0
+Update Appointment,2021-05-28 10:21:35.345,AWT-EventQueue-0
+Update Appointment,2021-05-28 10:21:45.263,AWT-EventQueue-0
+Add pacient,2021-05-28 10:23:02.975,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:30.725,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:34.536,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:38.946,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:45.807,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:48.098,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:51.742,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:53.944,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:56.04,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:30:58.106,AWT-EventQueue-0
+Delete Pacient,2021-05-28 10:31:02.076,AWT-EventQueue-0
+Add pacient,2021-05-28 10:31:23.642,AWT-EventQueue-0
+Add pacient,2021-05-28 10:31:52.809,AWT-EventQueue-0
+Add pacient,2021-05-28 10:32:24.116,AWT-EventQueue-0
+Add pacient,2021-05-28 10:33:02.362,AWT-EventQueue-0
+Add pacient,2021-05-28 10:33:35.124,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:33:57.242,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:34:00.455,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:34:02.844,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:34:06.807,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:34:09.629,AWT-EventQueue-0
+Add Doctor,2021-05-28 10:35:02.178,AWT-EventQueue-0
+Add Doctor,2021-05-28 10:35:53.614,AWT-EventQueue-0
+Add Doctor,2021-05-28 10:36:35.507,AWT-EventQueue-0
+Add Doctor,2021-05-28 10:37:21.301,AWT-EventQueue-0
+Add Doctor,2021-05-28 10:38:11.618,AWT-EventQueue-0
+Add Doctor,2021-05-28 10:40:31.99,AWT-EventQueue-0
+Add Doctor,2021-05-28 10:41:30.363,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:41:38.361,AWT-EventQueue-0
+Update Doctor,2021-05-28 10:42:06.814,AWT-EventQueue-0
+Update Doctor,2021-05-28 10:42:23.886,AWT-EventQueue-0
+Delete Appointment,2021-05-28 10:42:56.912,AWT-EventQueue-0
+Delete Appointment,2021-05-28 10:42:59.764,AWT-EventQueue-0
+Delete Appointment,2021-05-28 10:43:02.002,AWT-EventQueue-0
+Delete Appointment,2021-05-28 10:43:04.534,AWT-EventQueue-0
+Add Appointment,2021-05-28 10:43:32.267,AWT-EventQueue-0
+Add Appointment,2021-05-28 10:43:58.69,AWT-EventQueue-0
+Add Appointment,2021-05-28 10:44:22.69,AWT-EventQueue-0
+Add Appointment,2021-05-28 10:45:00.004,AWT-EventQueue-0
+Add Appointment,2021-05-28 10:45:45.042,AWT-EventQueue-0
+Delete Doctor,2021-05-28 10:45:51.423,AWT-EventQueue-0
+Open Frame Pacients,2021-05-28 10:48:21.177,AWT-EventQueue-0
+Open Frame Doctors,2021-05-28 10:48:23.812,AWT-EventQueue-0

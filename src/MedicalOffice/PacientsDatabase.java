@@ -228,4 +228,19 @@ public class PacientsDatabase {
         }
     }
 
+    protected static void writeDataToCsv(String csvFile, String[] data){
+        try {
+            File file = new File ("data/"+csvFile);
+            if (!file.exists())
+                file.createNewFile();
+
+            FileWriter csvWriter = new FileWriter(file, true);
+            csvWriter.write(String.join(",", data));
+            csvWriter.write("\n");
+            csvWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
