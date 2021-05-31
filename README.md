@@ -7,5 +7,5 @@ Doctors and Appointments) on which are implemented CRUD procedures.
 These functionalities can be viewed via the graphical interface implemented
 with Swing GUI toolkit. 
 
-## Medical Office Demo
+# Demo
  ![Medical Office Databases](demo/demo.gif)
